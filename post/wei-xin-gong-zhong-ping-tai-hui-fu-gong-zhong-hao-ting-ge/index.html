@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" >
+
+<title>微信公众平台回复公众号听歌 | waltye</title>
+<meta name="description" content="温故而知新">
+
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+<link rel="shortcut icon" href="https://waltye.github.io//favicon.ico?v=1576561382750">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+<link rel="stylesheet" href="https://waltye.github.io//styles/main.css">
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+
+<link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+
+
+
+  </head>
+  <body>
+    <div id="app" class="main">
+
+      <div class="sidebar" :class="{ 'full-height': menuVisible }">
+  <div class="top-container" data-aos="fade-right">
+    <div class="top-header-container">
+      <a class="site-title-container" href="https://waltye.github.io/">
+        <img src="https://waltye.github.io//images/avatar.png?v=1576561382750" class="site-logo">
+        <h1 class="site-title">waltye</h1>
+      </a>
+      <div class="menu-btn" @click="menuVisible = !menuVisible">
+        <div class="line"></div>
+      </div>
+    </div>
+    <div>
+      
+        
+          <a href="/" class="site-nav">
+            首页
+          </a>
+        
+      
+        
+          <a href="/archives" class="site-nav">
+            归档
+          </a>
+        
+      
+        
+          <a href="/tech" class="site-nav">
+            技术
+          </a>
+        
+      
+        
+          <a href="/post/about" class="site-nav">
+            关于
+          </a>
+        
+      
+    </div>
+  </div>
+  <div class="bottom-container" data-aos="flip-up" data-aos-offset="0">
+    <div class="social-container">
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    </div>
+    <div class="site-description">
+      温故而知新
+    </div>
+    <div class="site-footer">
+      Powered by <a href="https://github.com/waltye" target="_blank">watye</a> | <a class="rss" href="https://waltye.github.io//atom.xml" target="_blank">RSS</a>
+    </div>
+  </div>
+</div>
+
+
+      <div class="main-container">
+        <div class="content-container" data-aos="fade-up">
+          <div class="post-detail">
+            <h2 class="post-title">微信公众平台回复公众号听歌</h2>
+            <div class="post-date">2019-12-17</div>
+            
+            <div class="post-content">
+              <p>微信的基本应用，发歌名，会回复歌曲，点击即可听歌。加上方微信即可试听。现分享代码。使用方法：直接粘贴代码，修改TOKEN为自己的即可。</p>
+<pre><code>&lt;?php
+
+define(&quot;TOKEN&quot;, &quot;yelongyi&quot;);
+$wechatObj = new wechatCallbackapiTest();
+$wechatObj-&gt;responseMsg();
+
+/**
+ * 微信处理类
+ */
+class wechatCallbackapiTest {
+
+    /**
+     * 回应微信推送的主方法
+     */
+    public function responseMsg() {
+        //获取post数据
+        $postStr = $GLOBALS[&quot;HTTP_RAW_POST_DATA&quot;];
+        //解析post数据
+        $postObj = simplexml_load_string($postStr, 'SimpleXMLElement', LIBXML_NOCDATA);
+        switch ($postObj-&gt;MsgType) {
+            case 'event':
+                echo $resultStr = $this-&gt;getWelcomeContent($postObj);
+                break;
+            case 'text':
+                echo $resultStr = $this-&gt;getMusicContent($postObj);
+                break;
+            default:
+                echo $resultStr = $this-&gt;getMusicContent($postObj);
+                break;
+        }
+    }
+
+    /**
+     * 用户关注该公众号时推送给用户的信息
+     * @param resource $postObj 微信推送过来的数据对象
+     *
+     */
+    private function getWelcomeContent($postObj) {
+        if ($postObj-&gt;Event == 'subscribe') {
+            $ret = &quot;&lt;xml&gt;
+                    &lt;ToUserName&gt;&lt;![CDATA[%s]]&gt;&lt;/ToUserName&gt;
+                    &lt;FromUserName&gt;&lt;![CDATA[%s]]&gt;&lt;/FromUserName&gt;
+                    &lt;CreateTime&gt;%s&lt;/CreateTime&gt;
+                    &lt;MsgType&gt;&lt;![CDATA[%s]]&gt;&lt;/MsgType&gt;
+                    &lt;Content&gt;&lt;![CDATA[%s]]&gt;&lt;/Content&gt;
+                    &lt;/xml&gt;&quot;;
+            $ToUserName = $postObj-&gt;FromUserName;
+            $FromUserName = $postObj-&gt;ToUserName;
+            $CreateTime = time();
+            $MsgType = 'text';
+            $Content = '欢迎关注PHP技术文章,本公众号会不定时分享PHP相关技术性文章。当然，无聊也开发了一些小功能，目前可用的是点歌功能，输入歌名或歌名[空格]歌星，即可点歌。个人网站：www.yelongyi.com';
+            return sprintf($ret, $ToUserName, $FromUserName, $CreateTime, $MsgType, $Content);
+        } else {
+            //这里是取消关注，暂时不做处理
+        }
+    }
+
+    /**
+     *  获取返回数据，响应文字流
+     * @param resource $postObj 微信推送过来的数据对象
+     * @return text 格式化的字符串
+     */
+    private function getTextContent($postObj) {
+        $ret = &quot;&lt;xml&gt;
+                &lt;ToUserName&gt;&lt;![CDATA[%s]]&gt;&lt;/ToUserName&gt;
+                &lt;FromUserName&gt;&lt;![CDATA[%s]]&gt;&lt;/FromUserName&gt;
+                &lt;CreateTime&gt;%s&lt;/CreateTime&gt;
+                &lt;MsgType&gt;&lt;![CDATA[%s]]&gt;&lt;/MsgType&gt;
+                &lt;Content&gt;&lt;![CDATA[%s]]&gt;&lt;/Content&gt;
+                &lt;/xml&gt;&quot;;
+        $MsgType = 'text'; //回复类型
+        $GetMsg = $postObj-&gt;Content; //用户发送的内容
+        //如果输入的是以下文字，后期会进行其他处理，目前还没做。
+        $MsgArray = array('文章', '技术', '其他', '笑话');
+        if (in_array($GetMsg, $MsgArray)) {
+            $RetMsg = '您需要的' . $GetMsg . '还没有找到，好吧，就算找到了也不会回给你。';
+        } else {
+            $RetMsg = '亲，如果您是点歌，那么很遗憾没有找到您点的歌，请确认后再次点歌。如果您是来逗我的话，对不起，我宁死不从。我也是有贞操的。';
+        }
+        $resultStr = sprintf($ret, $postObj-&gt;FromUserName, $postObj-&gt;ToUserName, time(), $MsgType, $RetMsg);
+        return $resultStr;
+    }
+
+    /**
+     * 获取返回数据，响应点歌
+     * @param type $postObj 微信推送过来的数据对象
+     * @return text 格式化的字符串
+     */
+    private function getMusicContent($postObj) {
+        $ret = &quot;&lt;xml&gt;
+            &lt;ToUserName&gt;&lt;![CDATA[%s]]&gt;&lt;/ToUserName&gt;
+            &lt;FromUserName&gt;&lt;![CDATA[%s]]&gt;&lt;/FromUserName&gt;
+            &lt;CreateTime&gt;%s&lt;/CreateTime&gt;
+            &lt;MsgType&gt;&lt;![CDATA[%s]]&gt;&lt;/MsgType&gt;
+            &lt;Music&gt;
+            &lt;Title&gt;&lt;![CDATA[%s]]&gt;&lt;/Title&gt;
+            &lt;Description&gt;&lt;![CDATA[]]&gt;&lt;/Description&gt;
+            &lt;MusicUrl&gt;&lt;![CDATA[%s]]&gt;&lt;/MusicUrl&gt;
+            &lt;HQMusicUrl&gt;&lt;![CDATA[%s]]&gt;&lt;/HQMusicUrl&gt;
+            &lt;FuncFlag&gt;&lt;![CDATA[1]]&gt;&lt;/FuncFlag&gt;
+            &lt;/Music&gt;
+            &lt;/xml&gt;&quot;;
+        $recognition = $postObj-&gt;Content;
+        //判断格式是否为歌名+明星
+        if (strstr($recognition, &quot; &quot;)) {
+            $strArray = explode(&quot; &quot;, $recognition);
+            $keywordc = urlencode($strArray[0]);
+            $keyword2 = urlencode($strArray[1]);
+        } else {
+            $keywordc = urlencode($recognition);
+            $keyword2 = null;
+        }
+        //这里歌曲库拿的是百度音乐，歌曲还是比较全的
+        $musicapi = &quot;http://box.baidu.com/x?op=12&amp;count=1&amp;title={$keywordc}\$\${$keyword2}\$\$\$\$&quot;;
+        $simstr = file_get_contents($musicapi);
+        $musicobj = simplexml_load_string($simstr);
+        //如果没有搜寻到歌曲，按输入文字处理
+        if (empty($musicobj-&gt;count)) {
+            return $this-&gt;getTextContent($postObj);
+        }
+        foreach ($musicobj-&gt;url as $itemobj) {
+            $encode = $itemobj-&gt;encode;
+            $decode = $itemobj-&gt;decode;
+            $removedecode = end(explode('&amp;', $decode));
+            if ($removedecode &lt;&gt; &quot;&quot;) {
+                $removedecode = &quot;&amp;&quot; . $removedecode;
+            }
+            $decode = str_replace($removedecode, &quot;&quot;, $decode);
+            $musicurl = str_replace(end(explode('/', $encode)), $decode, $encode);
+            break;
+        }
+        $resultStr = sprintf($ret, $postObj-&gt;FromUserName, $postObj-&gt;ToUserName, time(), 'music', $recognition, $decode, $musicurl, $musicurl);
+        return $resultStr;
+    }
+
+}
+
+?&gt;
+</code></pre>
+
+            </div>
+            
+              <div class="tag-container">
+                
+                  <a href="https://waltye.github.io//tag/Bdee1S7kA" class="tag">
+                    tech
+                  </a>
+                
+              </div>
+            
+            
+              <div class="next-post">
+                <div class="next">下一篇</div>
+                <a href="https://waltye.github.io//post/ya-ma-xun-ec2-bu-she-yii2-kuang-jia">
+                  <h3 class="post-title">
+                    亚马逊EC2布设yii2框架
+                  </h3>
+                </a>
+              </div>
+            
+
+            
+
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+
+<script type="application/javascript">
+
+AOS.init();
+
+hljs.initHighlightingOnLoad()
+
+var app = new Vue({
+  el: '#app',
+  data: {
+    menuVisible: false,
+  },
+})
+
+</script>
+
+
+
+
+  </body>
+</html>

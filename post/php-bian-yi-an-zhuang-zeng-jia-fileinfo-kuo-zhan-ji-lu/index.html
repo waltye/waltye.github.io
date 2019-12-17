@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8" >
 
-<title>关于 | waltye</title>
+<title>PHP编译安装增加fileinfo扩展记录 | waltye</title>
 <meta name="description" content="温故而知新">
 
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
@@ -92,20 +92,49 @@
       <div class="main-container">
         <div class="content-container" data-aos="fade-up">
           <div class="post-detail">
-            <h2 class="post-title">关于</h2>
-            <div class="post-date">2019-01-25</div>
+            <h2 class="post-title">PHP编译安装增加fileinfo扩展记录</h2>
+            <div class="post-date">2019-12-17</div>
             
             <div class="post-content">
-              <blockquote>
-<p>欢迎来到我的小站呀，很高兴遇见你！🤝</p>
-</blockquote>
-<h2 id="关于本站">🏠 关于本站</h2>
-<h2 id="博主是谁">👨‍💻 博主是谁</h2>
-<h2 id="兴趣爱好">⛹ 兴趣爱好</h2>
-<h2 id="联系我呀">📬 联系我呀</h2>
+              <h3 id="php编译安装增加fileinfo扩展">PHP编译安装增加fileinfo扩展</h3>
+<h4 id="问题">问题</h4>
+<p>在使用图片上传时，报这个错 <code>The fileinfo PHP extension is not installed.</code>，是fileinfo扩展没有开启或者安装</p>
+<h4 id="解决思路">解决思路</h4>
+<h5 id="1-先判断是否安装了fileinfo扩展">1、先判断是否安装了fileinfo扩展</h5>
+<p><code>php -model | grep fileinfo</code></p>
+<p>如果没有结果的话，说明就是没有安装。</p>
+<h5 id="2-进入php安装目录查看有没有fileinfo的目录">2、进入php安装目录查看有没有fileinfo的目录</h5>
+<p><code>cd /alidata/server/php-5.6.9/ext/fileinfo</code></p>
+<h5 id="3-找到phpize的目录我的是在-alidataserverphpbinphpize">3、找到phpize的目录，我的是在 <code>/alidata/server/php/bin/phpize</code></h5>
+<h5 id="4-还是在第二部的fileinfo的安装目录下执行如下命令看下结果">4、还是在第二部的fileinfo的安装目录下，执行如下命令，看下结果。</h5>
+<p><code>/alidata/server/php/bin/phpize</code></p>
+<p>结果：</p>
+<pre><code>Configuring for:
+PHP Api Version:         20131106
+Zend Module Api No:      20131226
+Zend Extension Api No:   220131226
+</code></pre>
+<h5 id="5-执行安装命令">5、执行安装命令</h5>
+<p><code>./configure --with-php-config=/alidata/server/php/bin/php-config</code></p>
+<p><code>make &amp;&amp; make install</code></p>
+<p>返回以下结果，说明安装成功了:</p>
+<pre><code>Build complete.
+Don't forget to run 'make test'.
+</code></pre>
+<h5 id="6-找到phpini的位置编辑在末尾加上extensionfileinfoso然后保存-重启php-fpm即可">6、找到php.ini的位置，编辑在末尾加上<code>extension=fileinfo.so</code>，然后保存。重启php-fpm即可。</h5>
+<p>注意：你的各种目录可能和我的不一样，本文仅供参考。</p>
 
             </div>
             
+            
+              <div class="next-post">
+                <div class="next">下一篇</div>
+                <a href="https://waltye.github.io//post/shi-yong-markdown-lai-bian-xie-you-ya-de-wen-dang">
+                  <h3 class="post-title">
+                    使用Markdown来编写优雅的文档
+                  </h3>
+                </a>
+              </div>
             
 
             

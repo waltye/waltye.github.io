@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" >
+
+<title>亚马逊EC2布设yii2框架 | waltye</title>
+<meta name="description" content="温故而知新">
+
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+<link rel="shortcut icon" href="https://waltye.github.io//favicon.ico?v=1576561382750">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+<link rel="stylesheet" href="https://waltye.github.io//styles/main.css">
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+
+<link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+
+
+
+  </head>
+  <body>
+    <div id="app" class="main">
+
+      <div class="sidebar" :class="{ 'full-height': menuVisible }">
+  <div class="top-container" data-aos="fade-right">
+    <div class="top-header-container">
+      <a class="site-title-container" href="https://waltye.github.io/">
+        <img src="https://waltye.github.io//images/avatar.png?v=1576561382750" class="site-logo">
+        <h1 class="site-title">waltye</h1>
+      </a>
+      <div class="menu-btn" @click="menuVisible = !menuVisible">
+        <div class="line"></div>
+      </div>
+    </div>
+    <div>
+      
+        
+          <a href="/" class="site-nav">
+            首页
+          </a>
+        
+      
+        
+          <a href="/archives" class="site-nav">
+            归档
+          </a>
+        
+      
+        
+          <a href="/tech" class="site-nav">
+            技术
+          </a>
+        
+      
+        
+          <a href="/post/about" class="site-nav">
+            关于
+          </a>
+        
+      
+    </div>
+  </div>
+  <div class="bottom-container" data-aos="flip-up" data-aos-offset="0">
+    <div class="social-container">
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    </div>
+    <div class="site-description">
+      温故而知新
+    </div>
+    <div class="site-footer">
+      Powered by <a href="https://github.com/waltye" target="_blank">watye</a> | <a class="rss" href="https://waltye.github.io//atom.xml" target="_blank">RSS</a>
+    </div>
+  </div>
+</div>
+
+
+      <div class="main-container">
+        <div class="content-container" data-aos="fade-up">
+          <div class="post-detail">
+            <h2 class="post-title">亚马逊EC2布设yii2框架</h2>
+            <div class="post-date">2019-12-17</div>
+            
+            <div class="post-content">
+              <p>去年用EC2部署过Yii2的环境，不过是发布在CSDN上，所以这次迁移过来。其实本文主要还是在介绍通过git和github配合来安装Yii2框架。</p>
+<p><strong>环境：RedHat6.5 PHP5.5.12</strong><br>
+<strong>注意：Yii2需要php5.4.0 以上的环境来运行</strong></p>
+<p>近来准备玩玩Yii2框架，先是用我自己电脑开虚拟机搞，奈何电脑太差，运行起来比较慢，没办法，就寻思着搞云主机得了。由于自己有一个已经备案了的域名，所以信心满满的去搞了个阿里云主机，结果2天不到，又无法访问，说是不在它阿里那里备的案。于是我尝试搞了个亚马逊的免费一年的云主机，现在只需要你有张信用卡就可以申请了哟，不管你是银联还是visa。虽说速度慢点吧，但至少想干嘛干嘛呀。</p>
+<p>现在Yii2的布设方式推荐使用composer来进行，所以我这里是先安装LNMP环境（见我的其他文章），再安装composer，再安装git，最后布设Yii2</p>
+<p>###一、安装composer<br>
+1.cd到安装目录，我这里是安装到了<code>/www/composer</code><br>
+2.安装：<code>curl -s http://getcomposer.org/installer | php</code><br>
+3.查看安装是否成功，<code>php composer.phar</code><br>
+4.简化命令：<code>sudo mv composer.phar /usr/bin/composer</code><br>
+5.这样，你就可以全局使用composer命令了。如：<code>composer about</code></p>
+<p>###二、安装 git<br>
+首先，安装git<br>
+1.cd到软件包目录，我这里是/www/tmp<br>
+2.<code>wget http://kernel.org/pub/software/scm/git/git-1.9.3.tar.gz</code>，这里版本可以自己访问该网站进行查看，我使用的是最新版的1.9.3。<br>
+3.解压安装包：<code>tar -zxvf git-1.9.3.tar.gz</code><br>
+4.cd到安装目录。<code>cd git-1.9.3</code><br>
+5.生成编译文件 <code>./configure</code> ，这里编译之前可以先 <code>./configure --help</code> 查看附加选项。<br>
+6.编译 <code>make &amp;&amp; make install</code><br>
+7.完成后可以查看是否安装成功。<code>whereis git</code> 查看安装在哪里。<code>git --version</code> 查看当前git版本。如果能正常显示，是最好的。但是我在这一步使用<code>git --version</code> 命令时，提示</p>
+<blockquote>
+<p>git: error while loading shared libraries: libcharset.so.2: cannot open shared object file: No such file or directory</p>
+</blockquote>
+<p>一番查资料后找到解决方法，链接为：http://blog.chinaunix.net/uid-26212859-id-3256667.html</p>
+<p><strong>到这里已经安装成功了。下面将进行git的配置.</strong></p>
+<p>8.<code>cd ~/.ssh</code> ,如果之前存在了key，则需要先备份。我这里默认你是第一次安装并使用git。<br>
+9.创建一个新的ssh key，命令为：<code>ssh-keygen -t rsa -C &quot;xxxx@xxx.com&quot;</code> ,这里的邮箱地址填写你自己的github邮箱地址。<br>
+10.中间会提示2次让你输入密码短语，这里可以直接回车。最后你可以看到这样的信息，就是创建成功。<br>
+<img src="http://7s1t08.com1.z0.glb.clouddn.com/ec2_1.jpg" alt="ec2_1"></p>
+<p>11.查看ssh key并复制，<code>cat ./id_rsa.pub</code> 然后访问 <a href="https://github.com">https://github.com</a>，点击右上角的扳手图标（Account Settings）---&gt;SSH Keys------&gt;Add SSH key，如图所示：<br>
+<img src="http://7s1t08.com1.z0.glb.clouddn.com/ec2_2.jpg" alt="ec2_1"></p>
+<p>12.随意输入title和刚才从linux中复制的SSH key后点击增加即可。<br>
+13.测试能否正常连接到github，命令为：<code>ssh -T git@github.com</code><br>
+<img src="http://7s1t08.com1.z0.glb.clouddn.com/ec2_3.jpg" alt="ec2_1"></p>
+<p>输入yes后，显示：Hi XXXXXX! You've successfully authenticated, but GitHub does not provide shell access.表示连接成功。此时你的github.com里面刚才添加的keys应该就是亮的了。</p>
+<p>###三、git先搞到这里，下面来布设Yii2框架<br>
+14.进入/目录，然后运行以下命令：<br>
+<code>php composer.phar create-project --prefer-dist --stability=dev yiisoft/yii2-app-basic /www/wwwroot</code><br>
+如果按照我的第一步设置composer后，可以直接使用<br>
+<code>composer create-project --prefer-dist --stability=dev yiisoft/yii2-app-basic /www/wwwroot</code><br>
+，这里的/www/wwwroot目录就是你的web根目录(注意上面的命令不要在这个根目录下面执行，否则布设Yii2会报错。)。<br>
+15.最后，ls该目录，如果出现Yii2文件的话，就成功了。如下图：<br>
+<img src="http://7s1t08.com1.z0.glb.clouddn.com/ec2_4.jpg" alt="ec2_1"><br>
+<strong>到此，布设Yii2完毕。</strong></p>
+
+            </div>
+            
+              <div class="tag-container">
+                
+                  <a href="https://waltye.github.io//tag/Bdee1S7kA" class="tag">
+                    tech
+                  </a>
+                
+              </div>
+            
+            
+              <div class="next-post">
+                <div class="next">下一篇</div>
+                <a href="https://waltye.github.io//post/php-bian-yi-an-zhuang-zeng-jia-fileinfo-kuo-zhan-ji-lu">
+                  <h3 class="post-title">
+                    PHP编译安装增加fileinfo扩展记录
+                  </h3>
+                </a>
+              </div>
+            
+
+            
+
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+
+<script type="application/javascript">
+
+AOS.init();
+
+hljs.initHighlightingOnLoad()
+
+var app = new Vue({
+  el: '#app',
+  data: {
+    menuVisible: false,
+  },
+})
+
+</script>
+
+
+
+
+  </body>
+</html>

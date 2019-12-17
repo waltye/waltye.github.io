@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" >
+
+<title>使用Markdown来编写优雅的文档 | waltye</title>
+<meta name="description" content="温故而知新">
+
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+<link rel="shortcut icon" href="https://waltye.github.io//favicon.ico?v=1576561382750">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+<link rel="stylesheet" href="https://waltye.github.io//styles/main.css">
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+
+<link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+
+
+
+  </head>
+  <body>
+    <div id="app" class="main">
+
+      <div class="sidebar" :class="{ 'full-height': menuVisible }">
+  <div class="top-container" data-aos="fade-right">
+    <div class="top-header-container">
+      <a class="site-title-container" href="https://waltye.github.io/">
+        <img src="https://waltye.github.io//images/avatar.png?v=1576561382750" class="site-logo">
+        <h1 class="site-title">waltye</h1>
+      </a>
+      <div class="menu-btn" @click="menuVisible = !menuVisible">
+        <div class="line"></div>
+      </div>
+    </div>
+    <div>
+      
+        
+          <a href="/" class="site-nav">
+            首页
+          </a>
+        
+      
+        
+          <a href="/archives" class="site-nav">
+            归档
+          </a>
+        
+      
+        
+          <a href="/tech" class="site-nav">
+            技术
+          </a>
+        
+      
+        
+          <a href="/post/about" class="site-nav">
+            关于
+          </a>
+        
+      
+    </div>
+  </div>
+  <div class="bottom-container" data-aos="flip-up" data-aos-offset="0">
+    <div class="social-container">
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    </div>
+    <div class="site-description">
+      温故而知新
+    </div>
+    <div class="site-footer">
+      Powered by <a href="https://github.com/waltye" target="_blank">watye</a> | <a class="rss" href="https://waltye.github.io//atom.xml" target="_blank">RSS</a>
+    </div>
+  </div>
+</div>
+
+
+      <div class="main-container">
+        <div class="content-container" data-aos="fade-up">
+          <div class="post-detail">
+            <h2 class="post-title">使用Markdown来编写优雅的文档</h2>
+            <div class="post-date">2019-12-17</div>
+            
+            <div class="post-content">
+              <p><strong>Markdown作为一门标记语言，用来格式化文本内容。由于它的高可读性和简洁性，更能直接被渲染成美观的HTML文档，所以，现在很多网站在文档编写都加入了对Markdown的支持，如：Stack Overflow、Github。那么，Markdown是什么？到底有什么用呢？我通过自己的理解给大家讲讲。</strong></p>
+<p>###Markdown是什么<br>
+具体Markdown是什么，可以看 <a href="https://en.wikipedia.org/wiki/Markdown">维基百科</a> 对它的解释。其实，说简单一点，Markdown就是一种标记语言，用来标记文字的，而在文字里面加入了Markdown的标记后，文字就被Markdown格式化了。</p>
+<p><strong>来举个例子：</strong><br>
+我列出一段普通的文字，如下：</p>
+<pre><code>背影我与父亲不相见已二年余了，我最不能忘记的是他的背影。那年冬天，祖母死了，父亲的差使也交卸了，正是祸不单行的日子。我从北京到徐州，打算跟着父亲奔丧回家。到徐州见着父亲，看见满院狼藉的东西，又想起祖母，不禁簌簌地流下眼泪。父亲说：“事已如此，不必难过，好在天无绝人之路！”
+</code></pre>
+<p>我们可以发现，单纯的文字可读性很差不说，看起来也不美观。然后我给这段文字加上Markdown的标记。</p>
+<pre><code>背影
+======
+我与父亲不相见已二年余了，我最不能忘记的是他的背影。
+
+那年冬天，祖母死了，父亲的差使也交卸了，正是祸不单行的日子。我从北京到徐州，打算跟着父亲奔丧回家。到徐州见着父亲，看见满院狼藉的东西，又想起祖母，不禁簌簌地流下眼泪。父亲说：“事已如此，不必难过，好在天无绝人之路！”
+</code></pre>
+<p>虽然它看上去和普通的文本一样，但是它里面混入了一些“奇奇怪怪”的东西，比如”=====“，而这些奇怪的东西，就是Markdown的标记。我们再看这段文字，是不是可读性提高了许多，并且美观了。<br>
+这样，就是Markdown对文字进行了格式化，具有着很好的可读性，比如上面被标记后的文字我们一看就可以猜到背影应该是标题之类的东西。</p>
+<p>###为什么要用Markdown</p>
+<ol>
+<li>通过Markdown编写的文档，具有很高的可读性，方便编辑和修改。</li>
+<li>通过Markdown编写的文档，能被渲染成固定格式的、美观的HTML文档，再也不需要通过编辑器来编辑和排版了。</li>
+<li>语法简单，易上手，相比较同样是标记语言的HTML来说，这个学习成本很低，收益较快。</li>
+<li>跟随潮流，能被这么多人用，肯定是有它的道理。好多主流网站都支持这种语法，特别是IT行业的几个交流网站，你不会这个，文档编写不了不说，说出去也被鄙视啊。</li>
+</ol>
+<p>###Markdown语法简单介绍<br>
+Markdown总的来说，就是在文档中加入Markdown的标记。下面是各种标记的简单介绍。</p>
+<hr>
+<p>####标题：<br>
+在文档中添加标题，可以采用<code>===、---</code>或者<code>#</code>来产生。</p>
+<pre><code>我是一级标题
+==============
+
+我是二级标题
+--------------
+</code></pre>
+<h1 id="被渲染成html页面效果如下我是一级标题">被渲染成HTML页面效果如下：<br>
+我是一级标题</h1>
+<h2 id="我是二级标题">我是二级标题</h2>
+<p>你看，这样就不用自己手动写HTML标签了吧，又美观，又省事，多好啊。标题还有另外一种写法，就是:</p>
+<pre><code>#一级标题，我最大。
+##二级标题
+###三级标题
+####四级标题
+#####五级标题
+######六级标题，没有比我更小的了。
+</code></pre>
+<hr>
+<p>####区块引用：<br>
+示例：</p>
+<pre><code>&gt; 我是引用
+&gt; &gt; 引用里面还可以引用
+&gt; &gt; ####我里面也可以用其他语法哦。
+</code></pre>
+<p>被渲染成HTML页面效果如下：</p>
+<blockquote>
+<p>我是引用</p>
+<blockquote>
+<p>引用里面还可以引用<br>
+####我里面也可以用其他语法哦。</p>
+</blockquote>
+</blockquote>
+<hr>
+<p>####列表：<br>
+Markdown 支持有序列表和无序列表。<br>
+无序列表使用星号、加号或减号作为列表标记。有序列表使用数字接着一个英文句号。注意列表符号和文字之间有一个空格。<br>
+示例：</p>
+<pre><code>* 无序列表第一条
+* 无序列表第二条
+* 无序列表第三条
+
+1. 有序列表第一条
+4. 有序列表第二条(虽然不遵守数字的排序来结果是没变化的，但是按照数字顺序来不是更好嘛，所以还是建议写成1. 2. 3. 4.按照顺序来的这种。)
+3. 有序列表第三条
+</code></pre>
+<p>被渲染成HTML页面效果如下：</p>
+<ul>
+<li>无序列表第一条</li>
+<li>无序列表第二条</li>
+<li>无序列表第三条</li>
+</ul>
+<ol>
+<li>有序列表第一条</li>
+<li>有序列表第二条</li>
+<li>有序列表第三条</li>
+</ol>
+<hr>
+<p>####代码区块：<br>
+由于代码区块必须完全保留代码的原本格式，所以在HTML渲染时是用<code>&lt;pre&gt;</code>和<code>&lt;code&gt;</code>把代码块包起来。<br>
+代码区块的Markdown格式是:缩进4个空格或是一个制表符(tab键)。<br>
+还有一种是行内代码，格式是使用反引号把它包起来,如：`php`<br>
+代码区块示例：</p>
+<pre><code>    &lt;?php
+        //代码区块示例
+        phpinfo();
+    ?&gt;
+    行内代码示例:`echo 123;`
+</code></pre>
+<p>被渲染成HTML页面效果如下：<br>
+&lt;?php<br>
+//代码区块示例<br>
+phpinfo();<br>
+?&gt;<br>
+行内代码示例:<code>echo 123;</code></p>
+<hr>
+<p>####分隔线：<br>
+格式：在一行中用三个以上的星号、减号、底线，行内不能有其他东西，星号、减号、底线之前可以插入空格。<br>
+示例：</p>
+<pre><code>***
+* * * *
+---
+______
+</code></pre>
+<p>被渲染成HTML页面效果如下：</p>
+<hr>
+<hr>
+<hr>
+<hr>
+<hr>
+<p>####链接和图片：<br>
+链接分为<strong>行内式</strong>和<strong>参考式</strong>。行内式方便，参考式易读。<br>
+行内式格式为：<code>[链接显示的文字](链接url &quot;链接Title&quot;)</code>,链接Title可以不写。<br>
+参考示格式为:<code>[链接显示的文字][辨识链接的标记]</code>,而辨识链接的标记需要在文档任意一个位置以<code>[辨识链接的标记]: 链接url &quot;链接Title&quot;</code>来定义<br>
+示例：</p>
+<pre><code>[博客地址](http://www.yelongyi.com &quot;yelongyi.com&quot;)
+</code></pre>
+<p>被渲染成HTML页面效果如下：<br>
+<a href="http://www.yelongyi.com" title="yelongyi.com">博客地址</a><br>
+#####图片就是在链接前加一个感叹号<code>!</code>,格式为：<code>![图片Alt](图片路径 &quot;图片Title&quot;)</code></p>
+<p>示例：</p>
+<pre><code>![图片Alt](http://static.yelongyi.com/yii2_logo.png &quot;Title&quot;)
+</code></pre>
+<p>被渲染成HTML页面效果如下：<br>
+<img src="http://static.yelongyi.com/yii2_logo.png" alt="图片Alt" title="Title"><br>
+注意：现在Markdown还无法限制图片的宽高，所以想限制，得自己处理。</p>
+<hr>
+<p>####强调：<br>
+强调分斜体和加粗，标记符号是星号<code>*</code>或底线<code>_</code><br>
+斜体格式为一个标记符号把文字包起来:<code>*斜体*</code>或<code>_斜体_</code><br>
+粗体格式为两个标记符号把文字包起来:<code>**粗体**</code>或<code>__粗体__</code><br>
+示例：</p>
+<pre><code>我是*斜体*，我也是_斜体_
+我是**粗体**，我也是__粗体__
+</code></pre>
+<p>被渲染成HTML页面效果如下：<br>
+我是<em>斜体</em>，我也是_斜体_<br>
+我是__粗体__，我也是<strong>粗体</strong></p>
+<hr>
+<p>####自动链接：<br>
+Markdown支持以比较简短的自动链接的形式来处理网址和邮箱地址，只要使用方括号括起来，Markdown就会把它转变为链接，如：<code>&lt;http://yelongyi.com&gt;</code>,<code>&lt;example@gmail.com&gt;</code><br>
+示例：</p>
+<pre><code>&lt;http://www.yelongyi.com&gt;
+&lt;example@gmail.com&gt;
+</code></pre>
+<p>被渲染成HTML页面效果如下：<br>
+<a href="http://www.yelongyi.com">http://www.yelongyi.com</a><br>
+<a href="mailto:example@gmail.com">example@gmail.com</a></p>
+<p>###其他需要了解的知识<br>
+<strong>Github风格的Markdown(GFM)和常规的Markdown有一些区别是需要注意的：</strong></p>
+<ol>
+<li>底线<code>_</code>常规Markdown语法是作为强调，Github取消了这个语法，允许使用底线来命名和编码。</li>
+<li>直接写url就能显示成url链接的形式。如: <code>http://yelongyi.com</code>会显示成一个a链接。</li>
+<li>增加删除线语法：<code>~~Mistaken text.~~</code>，示例：<s>Mistaken text.</s></li>
+<li>代码区块新增了一种标记风格，就是使用三个反引号把代码区块包起来。</li>
+<li>增加语法高亮解析，如：<br>
+```php<br>
+echo 1234;<br>
+```<br>
+这种语法，就会识别成PHP编码并给予高亮。</li>
+<li>你能通过标记<code>|</code>和<code>-</code>来建立表格。</li>
+<li>其他Github新增的HTML标签也可以在Github中使用。</li>
+</ol>
+<p>具体可参考官方文档：https://help.github.com/articles/github-flavored-markdown/</p>
+<p>###其他参考资料<br>
+Markdown维基百科: https://en.wikipedia.org/wiki/Markdown<br>
+Markdown语法说明(简体中文版): http://www.appinn.com/markdown/<br>
+Markdown在线编辑器: http://spec.commonmark.org/dingus/ &amp; http://mahua.jser.me/<br>
+淘宝UEDMarkdown简明教程: http://ued.taobao.org/blog/2012/07/getting-started-with-markdown/</p>
+
+            </div>
+            
+              <div class="tag-container">
+                
+                  <a href="https://waltye.github.io//tag/Bdee1S7kA" class="tag">
+                    tech
+                  </a>
+                
+              </div>
+            
+            
+              <div class="next-post">
+                <div class="next">下一篇</div>
+                <a href="https://waltye.github.io//post/git-de-ji-ben-shi-yong">
+                  <h3 class="post-title">
+                    Git的基本使用
+                  </h3>
+                </a>
+              </div>
+            
+
+            
+
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+
+<script type="application/javascript">
+
+AOS.init();
+
+hljs.initHighlightingOnLoad()
+
+var app = new Vue({
+  el: '#app',
+  data: {
+    menuVisible: false,
+  },
+})
+
+</script>
+
+
+
+
+  </body>
+</html>

@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://waltye.github.io/</id>
     <title>waltye</title>
-    <updated>2019-12-17T03:52:39.752Z</updated>
+    <updated>2019-12-17T05:43:08.942Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://waltye.github.io/"/>
     <link rel="self" href="https://waltye.github.io//atom.xml"/>
@@ -10,6 +10,167 @@
     <logo>https://waltye.github.io//images/avatar.png</logo>
     <icon>https://waltye.github.io//favicon.ico</icon>
     <rights>All rights reserved 2019, waltye</rights>
+    <entry>
+        <title type="html"><![CDATA[微信公众平台回复公众号听歌]]></title>
+        <id>https://waltye.github.io//post/wei-xin-gong-zhong-ping-tai-hui-fu-gong-zhong-hao-ting-ge</id>
+        <link href="https://waltye.github.io//post/wei-xin-gong-zhong-ping-tai-hui-fu-gong-zhong-hao-ting-ge">
+        </link>
+        <updated>2019-12-17T05:42:49.000Z</updated>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[亚马逊EC2布设yii2框架]]></title>
+        <id>https://waltye.github.io//post/ya-ma-xun-ec2-bu-she-yii2-kuang-jia</id>
+        <link href="https://waltye.github.io//post/ya-ma-xun-ec2-bu-she-yii2-kuang-jia">
+        </link>
+        <updated>2019-12-17T05:41:39.000Z</updated>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[PHP编译安装增加fileinfo扩展记录]]></title>
+        <id>https://waltye.github.io//post/php-bian-yi-an-zhuang-zeng-jia-fileinfo-kuo-zhan-ji-lu</id>
+        <link href="https://waltye.github.io//post/php-bian-yi-an-zhuang-zeng-jia-fileinfo-kuo-zhan-ji-lu">
+        </link>
+        <updated>2019-12-17T05:41:10.000Z</updated>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[使用Markdown来编写优雅的文档]]></title>
+        <id>https://waltye.github.io//post/shi-yong-markdown-lai-bian-xie-you-ya-de-wen-dang</id>
+        <link href="https://waltye.github.io//post/shi-yong-markdown-lai-bian-xie-you-ya-de-wen-dang">
+        </link>
+        <updated>2019-12-17T05:39:24.000Z</updated>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[Git的基本使用]]></title>
+        <id>https://waltye.github.io//post/git-de-ji-ben-shi-yong</id>
+        <link href="https://waltye.github.io//post/git-de-ji-ben-shi-yong">
+        </link>
+        <updated>2019-12-17T05:37:26.000Z</updated>
+        <summary type="html"><![CDATA[<p><strong>本文档只是对 <a href="http://www.liaoxuefeng.com/wiki/0013739516305929606dd18361248578c67b8067c8c017b000">史上最浅显易懂的Git教程</a> 进行了一个精简，之后有什么遗忘了，可以快速的查阅这里。</strong><br>
+##安装Git</p>
+<ol>
+<li>
+<p>在Linux上安装 <code>sudo apt-get install git</code>(Debian、Ubuntu)，<code>yum -y install git</code>(CentOS)</p>
+</li>
+<li>
+<p>在Mac上安装，一般Mac都默认已安装Git，可以敲 <code>git version</code> 命令查看是否已经安装，如果没有安装，使用命令 <code>brew install git</code> 来安装。</p>
+</li>
+</ol>
+<hr>
+<p>##初始配置</p>
+<ul>
+<li>
+<p>git配置初解<br>
+git的配置有两层，分为用户配置和仓库配置。在实际使用中，仓库配置会覆盖用户配置。</p>
+<ol>
+<li>用户配置<br>
+通过命令 <code>git config --global</code> 来进行管理，对应的文件是 <code>~/.gitconfig</code> 。也就是说，你通过命令和直接修改文件的效果是一样的。<br>
+用户配置的方便之处在于，只需要配置一次，之后你创建的所有仓库都会使用这个配置。</li>
+<li>仓库配置<br>
+通过命令 <code>git config</code> 来进行管理，对应的文件是 <code>仓库目录/.git/config</code> 。一般，这个不用配置，但有些特殊情况，会用到这个配置。一旦配置了这个，那么这里配置的信息会覆盖用户配置。</li>
+</ol>
+</li>
+<li>
+<p>我们来初始配置一下之后提交会用到的你的个人信息</p>
+</li>
+</ul>
+<pre><code>git config --global user.name &quot;Your Name&quot;
+git config --global user.email &quot;example@gmail.com&quot;
+</code></pre>
+<hr>
+<p>##Git版本库基本操作<br>
+###创建Git版本仓库</p>
+<ol>
+<li>创建并进入一个新目录，或直接进入一个已存在的目录。</li>
+<li>执行 <code>git init</code> 命令。</li>
+</ol>
+<p>###添加文件和提交至版本库<br>
+添加文件至Git仓库: <code>git add 文件名称</code><br>
+提交添加的文件至本地仓库: <code>git commit -m '提交说明' 文件名称</code></p>
+<p>###查看仓库状态和文件更改具体内容</p>
+<ol>
+<li>使用命令 <code>git status</code> 可以查看当前仓库的状态。一般用来查看当前仓库有哪些文件是被修改过的。</li>
+<li>如果有文件被修改了，可以通过 <code>git diff 文件名称</code> 来查看具体修改的点。</li>
+</ol>
+<p>###版本查看和回退</p>
+<ul>
+<li>查看提交的版本信息<br>
+<code>git log</code> 显示详细的提交日志<br>
+<code>git log --pretty=oneline</code> 只显示版本号和版本提交信息</li>
+<li>回退版本
+<ol>
+<li><code>git reset --hard HEAD^</code>，其中，<code>HEAD</code>表示当前版本，<code>HEAD^</code>表示上一个版本，<code>HEAD~100</code>表示上100个版本。HEAD也可以使用具体的版本号或版本号的前面一段，Git会智能的去找对应正确的版本。</li>
+</ol>
+</li>
+<li>回到未来版本
+<ol>
+<li><code>git reflog</code> 可以查看所有的提交记录，不管是回</li>
+</ol>
+</li>
+</ul>
+]]></summary>
+        <content type="html"><![CDATA[<p><strong>本文档只是对 <a href="http://www.liaoxuefeng.com/wiki/0013739516305929606dd18361248578c67b8067c8c017b000">史上最浅显易懂的Git教程</a> 进行了一个精简，之后有什么遗忘了，可以快速的查阅这里。</strong><br>
+##安装Git</p>
+<ol>
+<li>
+<p>在Linux上安装 <code>sudo apt-get install git</code>(Debian、Ubuntu)，<code>yum -y install git</code>(CentOS)</p>
+</li>
+<li>
+<p>在Mac上安装，一般Mac都默认已安装Git，可以敲 <code>git version</code> 命令查看是否已经安装，如果没有安装，使用命令 <code>brew install git</code> 来安装。</p>
+</li>
+</ol>
+<hr>
+<p>##初始配置</p>
+<ul>
+<li>
+<p>git配置初解<br>
+git的配置有两层，分为用户配置和仓库配置。在实际使用中，仓库配置会覆盖用户配置。</p>
+<ol>
+<li>用户配置<br>
+通过命令 <code>git config --global</code> 来进行管理，对应的文件是 <code>~/.gitconfig</code> 。也就是说，你通过命令和直接修改文件的效果是一样的。<br>
+用户配置的方便之处在于，只需要配置一次，之后你创建的所有仓库都会使用这个配置。</li>
+<li>仓库配置<br>
+通过命令 <code>git config</code> 来进行管理，对应的文件是 <code>仓库目录/.git/config</code> 。一般，这个不用配置，但有些特殊情况，会用到这个配置。一旦配置了这个，那么这里配置的信息会覆盖用户配置。</li>
+</ol>
+</li>
+<li>
+<p>我们来初始配置一下之后提交会用到的你的个人信息</p>
+</li>
+</ul>
+<pre><code>git config --global user.name &quot;Your Name&quot;
+git config --global user.email &quot;example@gmail.com&quot;
+</code></pre>
+<hr>
+<p>##Git版本库基本操作<br>
+###创建Git版本仓库</p>
+<ol>
+<li>创建并进入一个新目录，或直接进入一个已存在的目录。</li>
+<li>执行 <code>git init</code> 命令。</li>
+</ol>
+<p>###添加文件和提交至版本库<br>
+添加文件至Git仓库: <code>git add 文件名称</code><br>
+提交添加的文件至本地仓库: <code>git commit -m '提交说明' 文件名称</code></p>
+<p>###查看仓库状态和文件更改具体内容</p>
+<ol>
+<li>使用命令 <code>git status</code> 可以查看当前仓库的状态。一般用来查看当前仓库有哪些文件是被修改过的。</li>
+<li>如果有文件被修改了，可以通过 <code>git diff 文件名称</code> 来查看具体修改的点。</li>
+</ol>
+<p>###版本查看和回退</p>
+<ul>
+<li>查看提交的版本信息<br>
+<code>git log</code> 显示详细的提交日志<br>
+<code>git log --pretty=oneline</code> 只显示版本号和版本提交信息</li>
+<li>回退版本
+<ol>
+<li><code>git reset --hard HEAD^</code>，其中，<code>HEAD</code>表示当前版本，<code>HEAD^</code>表示上一个版本，<code>HEAD~100</code>表示上100个版本。HEAD也可以使用具体的版本号或版本号的前面一段，Git会智能的去找对应正确的版本。</li>
+</ol>
+</li>
+<li>回到未来版本
+<ol>
+<li><code>git reflog</code> 可以查看所有的提交记录，不管是回</li>
+</ol>
+</li>
+</ul>
+]]></content>
+    </entry>
     <entry>
         <title type="html"><![CDATA[linux下别名alias的基本使用.md]]></title>
         <id>https://waltye.github.io//post/linux-xia-bie-ming-alias-de-ji-ben-shi-yong-md</id>
