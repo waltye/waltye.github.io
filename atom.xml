@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://waltye.github.io/</id>
     <title>waltye</title>
-    <updated>2019-12-17T05:49:32.263Z</updated>
+    <updated>2019-12-17T05:49:55.280Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://waltye.github.io/"/>
     <link rel="self" href="https://waltye.github.io//atom.xml"/>
@@ -172,7 +172,7 @@ git config --global user.email &quot;example@gmail.com&quot;
 ]]></content>
     </entry>
     <entry>
-        <title type="html"><![CDATA[linux下别名alias的基本使用.md]]></title>
+        <title type="html"><![CDATA[linux下别名alias的基本使用]]></title>
         <id>https://waltye.github.io//post/linux-xia-bie-ming-alias-de-ji-ben-shi-yong-md</id>
         <link href="https://waltye.github.io//post/linux-xia-bie-ming-alias-de-ji-ben-shi-yong-md">
         </link>
