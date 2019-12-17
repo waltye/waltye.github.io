@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://waltye.github.io/</id>
     <title>waltye</title>
-    <updated>2019-12-17T03:30:24.521Z</updated>
+    <updated>2019-12-17T03:40:25.556Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://waltye.github.io/"/>
     <link rel="self" href="https://waltye.github.io//atom.xml"/>
@@ -11,16 +11,10 @@
     <icon>https://waltye.github.io//favicon.ico</icon>
     <rights>All rights reserved 2019, waltye</rights>
     <entry>
-        <title type="html"><![CDATA[Hello Gridea]]></title>
-        <id>https://waltye.github.io//post/hello-gridea</id>
-        <link href="https://waltye.github.io//post/hello-gridea">
+        <title type="html"><![CDATA[linux下别名alias的基本使用.md]]></title>
+        <id>https://waltye.github.io//post/linux-xia-bie-ming-alias-de-ji-ben-shi-yong-md</id>
+        <link href="https://waltye.github.io//post/linux-xia-bie-ming-alias-de-ji-ben-shi-yong-md">
         </link>
-        <updated>2018-12-11T16:00:00.000Z</updated>
-        <summary type="html"><![CDATA[<p>👏  欢迎使用 <strong>Gridea</strong> ！<br>
-✍️  <strong>Gridea</strong> 一个静态博客写作客户端。你可以用它来记录你的生活、心情、知识、笔记、创意... ...</p>
-]]></summary>
-        <content type="html"><![CDATA[<p>👏  欢迎使用 <strong>Gridea</strong> ！<br>
-✍️  <strong>Gridea</strong> 一个静态博客写作客户端。你可以用它来记录你的生活、心情、知识、笔记、创意... ...</p>
-]]></content>
+        <updated>2019-12-17T03:39:15.000Z</updated>
     </entry>
 </feed>

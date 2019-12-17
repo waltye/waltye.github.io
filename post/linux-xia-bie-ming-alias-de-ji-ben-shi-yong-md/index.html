@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8" >
 
-<title>waltye</title>
+<title>linux下别名alias的基本使用.md | waltye</title>
 <meta name="description" content="温故而知新">
 
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
@@ -91,27 +91,43 @@
 
       <div class="main-container">
         <div class="content-container" data-aos="fade-up">
-          
-            <article class="post-item">
-              <div class="left">
-                <a href="https://waltye.github.io//post/linux-xia-bie-ming-alias-de-ji-ben-shi-yong-md">
-                  <h2 class="post-title">linux下别名alias的基本使用.md</h2>
-                </a>
-                <div class="post-date">
-                  2019-12-17
-                </div>
-                <div class="post-abstract">
-                  
-                </div>
-              </div>
-              
-            </article>
-          
+          <div class="post-detail">
+            <h2 class="post-title">linux下别名alias的基本使用.md</h2>
+            <div class="post-date">2019-12-17</div>
+            
+            <div class="post-content">
+              <p><em><strong>linux下别名alias的基本使用。刚好在设置这个东西，记下来以免遗忘。</strong></em><br>
+###环境<br>
+系统: OSX 10.10.3 和 CentOS 7.0 64位，经测试都可以正常运行</p>
+<p>###功能说明<br>
+功能说明: 设置指令的别名，用来更快的输入指令<br>
+语法: alias [别名]=[指令名称]<br>
+举例: <code>alias la='ls -A'</code>，这样，在命令行中输入<code>la</code>就等于输入了<code>ls -A</code><br>
+删除别名命令: unalias [别名]</p>
+<p>###注意事项<br>
+生效时间: <em><strong>在命令行中直接运用alias命令来进行处理的话，生效时间仅是该次登录的操作时间。也就是仅本次登录可用，退出了系统再重新进入就没用了。</strong></em></p>
+<p>###作用域<br>
+基本的alias命令只是临时性生效的，一旦用户退出就失效了。<br>
+永久生效解决方法：</p>
+<ol>
+<li>把命令加入环境变量配置文件中，如:/etc/bashrc或~/.bashrc中，他们的区别在于一个是设置给所有系统用户可用，一个是仅当前用户可用</li>
+<li>修改完后记得重载环境配置文件，否则本次使用会没有加载，命令为:source [文件名],如</li>
+</ol>
+<p>###最后附上操作实例</p>
+<pre><code>vim ~./bashrc
+echo alias la=\'ls -A\' &gt;&gt; ~/.zshrc
+source ~/.zshrc
+</code></pre>
+<p>这样，你之后每次输入命令<code>la</code>就等于输入<code>ls -A</code>了。<br>
+其中，~/.zshrc是我的环境配置文件，你应当修改成你自己的。</p>
 
-          <div class="pagination-container">
-  
-  
-</div>
+            </div>
+            
+            
+
+            
+
+          </div>
 
         </div>
       </div>
